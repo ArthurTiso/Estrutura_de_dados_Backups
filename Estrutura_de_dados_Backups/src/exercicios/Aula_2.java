@@ -2,7 +2,8 @@ package exercicios;
 
 public class Aula_2 {
 
-
+	
+	// 1 - Modifique o exibeRec de forma que ele opere somente com um parâmetro
 	 static void ExibeN(int i) {
 		 	
 		 	if ( i == 1 ) {
@@ -26,7 +27,8 @@ public class Aula_2 {
 			 return i + Soma(i-1);
 		 }
 	 }
-	 
+	
+	 //2 - Implemente o método recursivo fatorial(x) que retorna o fatorial de x
 	 static int FatorialX(int x) {
 		 if (x == 1) {
 			 System.out.println(x);
@@ -38,7 +40,8 @@ public class Aula_2 {
 		 }
 
 	 }
-	 
+
+	// 3 - Implemente, de forma recursiva, uma função int pot(int x, int n) que, dados dois números inteiros x e n, calcula o valor de x elevado a n
 	 static int pot(int x, int n) {
 		 if (n == 0) {
 			 return 1;
@@ -48,7 +51,8 @@ public class Aula_2 {
 		 return x* pot(x, n-1) ;
 	 }
 	 
-	 	 
+	 // 4 - Crie uma função recursiva que retorne a soma dos elementos de um vetor de N inteiro
+	
 	 static int SomaVet(int n, int vet[]) {
 		 if(n < 0 ) {
 		 return 0;
