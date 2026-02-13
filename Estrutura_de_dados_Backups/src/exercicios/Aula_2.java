@@ -2,7 +2,7 @@ package exercicios;
 
 public class Aula_2 {
 
-	
+
 	// 1 - Modifique o exibeRec de forma que ele opere somente com um parâmetro
 	 static void ExibeN(int i) {
 		 	
