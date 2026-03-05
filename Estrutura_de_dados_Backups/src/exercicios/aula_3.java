@@ -4,7 +4,7 @@ public class aula_3 {
 
 	   public static void main(String[] args) {
 
-	        int N = 10000;
+	        int N = 50000;
 
 	        int vetAleatorio_1[] = new int[N];
 	        int vetMelhorCaso_1[] = new int[N];
@@ -75,6 +75,33 @@ public class aula_3 {
 	        tempoMS = (fim - inicio) - tempoS * 1000;
 	        System.out.println("Tempo de ordenacao(melhorado) Pior Caso: " + tempoS + "s" + tempoMS + "ms");              
 	        
+	        
+	        //////// ORDENAÇÃO INSERTION! /////////////////
+	        /// 
+	        //--- ALEATORIO ---//
+	        inicio = System.currentTimeMillis();
+	        ordernarInsertion(vetAleatorio_2, N); 
+	        fim = System.currentTimeMillis();
+	        tempoS = (fim - inicio) / 1000;
+	        tempoMS = (fim - inicio) - tempoS * 1000;
+	        System.out.println("Tempo de ordenacao(Insertion) Aleatorio: " + tempoS + "s" + tempoMS + "ms");
+	        
+	        //--- MELHOR CASO ---//
+	        inicio = System.currentTimeMillis();
+	        ordernarInsertion(vetMelhorCaso_2, N); 
+	        fim = System.currentTimeMillis();
+	        tempoS = (fim - inicio) / 1000;
+	        tempoMS = (fim - inicio) - tempoS * 1000;
+	        System.out.println("Tempo de ordenacao(Insertion) Melhor Caso: " + tempoS + "s" + tempoMS + "ms");
+	        
+	        //--- PIOR CASO ---//
+	        inicio = System.currentTimeMillis();
+	        ordernarInsertion(vetPiorCaso_2, N); 
+	        fim = System.currentTimeMillis();
+	        tempoS = (fim - inicio) / 1000;
+	        tempoMS = (fim - inicio) - tempoS * 1000;
+	        System.out.println("Tempo de ordenacao(Insertion) Pior Caso: " + tempoS + "s" + tempoMS + "ms");              
+	        
 
 	    }
 
@@ -122,19 +149,36 @@ public class aula_3 {
 	    }
 
 	    private static void ordenarMelhorado(int[] vet, int N) {
-	    	for(int i=0; i<N; i++) {
-	    		for(int j=0; j<(N-1-i); j++) {
-	    			if (vet[j] > vet[j+1]) 
-	    				troca(vet, j, j+1);
-	    			else {
-	    			//continuar	
-	    			}
-	    		}
-	    	}
+	        boolean trocou = true;
+	        int i = 0;
+	        while (trocou) {
+	            trocou = false;
+	            for (int j = 0; j < (N - i - 1); j++) {
+	                if (vet[j] > vet[j + 1]) {
+	                    troca(vet, j, j + 1);
+	                    trocou = true;
+	                }
+	            }
+	            i++;
+	        }
+
+	    }  
+	    
+	     
+	    static void ordernarInsertion(int[] vet, int N){
+	        
+	        for (int i = 1; i < N; ++i) {
+	            int key = vet[i];
+	            int j = i - 1;
+
+	            while (j >= 0 && vet[j] > key) {
+	                vet[j + 1] = vet[j];
+	                j = j - 1;
+	            }
+	            vet[j + 1] = key;
+	        }
 	    }
-
-
-	}
+ }
 	
 	
 	
