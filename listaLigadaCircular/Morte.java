@@ -7,7 +7,7 @@ public class Morte {
 
     public static void main(String[] args) {
 
-        int N = 6;
+        int N = 13;
         int S = 5;
 
         for (int i = 1; i <= N; i++) {
@@ -53,17 +53,14 @@ public class Morte {
             } while (temp != inicio);
         }
     }
-
-    static void josephus(int s) {
-    	No temp = inicio;
-    	int i = 1;
-    	while( ) {
-    	for( int j = 1; j < s; j++) {
-    		temp = temp.prox;
-    	}		
-    	temp.prox = temp.prox.prox;
-    	i++;
-    	}
-    	inicio = temp;
+    static void josephus(int s){
+        
+        while(inicio!=inicio.prox){
+            for(int i=1;i<s-1;i++)
+                inicio = inicio.prox;
+            //System.out.println("Matando: "+inicio.prox.valor);
+            inicio.prox = inicio.prox.prox;
+            inicio = inicio.prox;
+        }
     }
-}
+    }
