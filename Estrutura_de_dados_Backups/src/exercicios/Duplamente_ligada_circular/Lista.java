@@ -171,34 +171,40 @@ public class Lista {
     	
    }
 
-    static void remover(int x){
+   static void remover(int x){
 
-        if(inicio == null) return;
+    if(inicio == null) return;
 
-        No temp = inicio;
+    No temp = inicio;
 
-        do{
-            if(temp.valor == x){
+    do{
 
-                // único elemento ele ja remove aq!
-                if(temp.prox == temp){
-                    inicio = null;
-                    return;
-                }
+        if(temp.valor == x){
 
-                temp.ant.prox = temp.prox;
-                temp.prox.ant = temp.ant;
-
-                if(temp == inicio) // remover caoso esteja no inicio!!
-                    inicio = temp.prox;
-
+            // 🔴 caso 1: único elemento
+            if(temp.prox == temp){
+                inicio = null;
                 return;
             }
 
-            temp = temp.prox;
+            // 🔵 desconecta o nó
+            temp.ant.prox = temp.prox;
+            temp.prox.ant = temp.ant;
 
-        } while(temp != inicio);
-    }
+            // 🟡 se era o início, atualiza
+            if(temp == inicio){
+                inicio = temp.prox;
+            }
+
+            return;
+        }
+
+        temp = temp.prox;
+
+    } while(temp != inicio);
+
+    System.out.println("Valor não encontrado");
+}
     static void removerPrimeiro(){
 
         if(inicio == null) return;
