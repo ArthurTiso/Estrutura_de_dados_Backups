@@ -16,7 +16,9 @@ public class Main {
 		inserir(6);
 		
 		maior(raiz);
-		menor(raiz);
+		
+		
+		
 	}
 
 	
@@ -83,8 +85,7 @@ public class Main {
 	        
 	    }
 	   
-	   static int maior (NoA n) { // retorna o maior valor que existe na árvore
-		   
+	   static int maior (NoA n) { // retorna o maior valor que existe na árvore 
 		NoA temp = raiz;
 		   
 		if(raiz == null) {
@@ -118,24 +119,55 @@ public class Main {
 			}
 	   }
 	   
-	   static void exibeFolhas(NoA n) { //exibe todas as folhas da árvore em ordem crescente
-		   
-		   
+	   
+	   public static int maiorPIA(NoA temp) {
+		  
+	        if(temp != null){
+	            int x = maiorPIA(temp.dir);
+	            if(temp.valor > x)
+	                return temp.valor;
+	            else
+	                return x;
+	        }
+	        return -1;
+	    }
+	   
+	    public static void exibeFolhas(NoA temp){
+	        if(temp != null){
+	            exibeFolhas(temp.esq);
+	            if(ehFolha(temp))
+	                System.out.print(temp.valor+" ");
+	            exibeFolhas(temp.dir);
+	        }
+	    }
+	   
+	    private static int profundidade(NoA temp) {
+	        if(temp != null){
+	            if(ehFolha(temp))
+	                return 0;
+	            else{
+	                int x = profundidade(temp.esq);
+	                int y = profundidade(temp.dir);
+	                int r = (x>y)? x : y;
+	                return r+1;
+	            }
+	        }
+	        return -1;
+	    }
+	   
+	    private static int tamanho(NoA temp) {
+	        if(temp != null)
+	            return 1+tamanho(temp.esq)+tamanho(temp.dir);
+
+	        return 0;
+	     }
+	   
+	   public static boolean ehFolha(NoA temp) {
+		   if((temp.esq == null) && (temp.dir==null))
+	            return true;
+	        return false;
 	   }
 	   
-	   int profundidade(NoA n) { //retorna a profundidade da árvore
-		   
-		   
-		   
-		   return 0;
-	   }
-	   
-	   int tamanho(NoA n) { // retorna a quantidade de nós existente na árvore
-		   
-		   
-		   
-		   return 0;
-	   }
 			   
 	   
 	  
