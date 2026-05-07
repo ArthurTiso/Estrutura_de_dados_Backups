@@ -15,7 +15,7 @@ public class Main {
 		inserir(6);
 		inserir(6);
 		
-		maior(raiz);
+		inserirExclusivo(9);
 		
 		
 		
@@ -53,7 +53,36 @@ public class Main {
 	        }
 	    }
 	   
+	   public static void inserirExclusivo(int x) {
+		   
+		  if( !existe (x))
+			  inserir(x);
+		  else System.out.println("Esse valor já está presente");
+	   }
 	   
+	   public static boolean existe( int x) {
+		
+		   NoA temp = raiz;
+		   
+		   if(x == temp.valor) return true;
+		   else {
+		   
+		   while(temp.esq != null && temp.dir != null) {
+			   while( x < temp.esq.valor) {
+				   if ( x == temp.valor) return true;
+				   temp = temp.esq;
+			   }
+			   
+			   
+//			   if(x == temp.esq.valor || x == temp.dir.valor ) return true;  
+//			   else {
+//				   
+			   }
+		   
+		   
+		   }
+	   }
+		
 	   public static void exibir(NoA temp){
 	        if(temp != null){
 	            //TENTE MUDAR A ORDEM DAS 3 LINHAS ABAIXO 
@@ -62,6 +91,28 @@ public class Main {
 	            exibir(temp.dir);
 	        }
 	    }
+	   
+	   
+	   public static void remover (int x) {
+		   if (raiz.valor == x) {
+			   if (raiz.esq == null && raiz.dir == null)
+				   raiz = null;
+			   else { 
+				   if (raiz.esq == null && raiz.dir != null)
+					   raiz = raiz.dir;
+				   else if (raiz.esq != null && raiz.dir == null)
+					   raiz = raiz.esq;
+				   else
+					   remove2filhas(raiz, x);
+			   }
+		   }
+	   }
+	   
+	   public static void remove2filhas(NoA n, int x) {
+		   
+	   }
+	   
+	   
 
 	   static void exibeArvore(NoA n, int x){
 
