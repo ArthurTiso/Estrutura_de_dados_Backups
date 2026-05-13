@@ -53,6 +53,7 @@ public class Main {
 	        }
 	    }
 	   
+	   	   
 	   public static void inserirExclusivo(int x) {
 		   
 		  if( !existe (x))
@@ -60,27 +61,25 @@ public class Main {
 		  else System.out.println("Esse valor já está presente");
 	   }
 	   
-	   public static boolean existe( int x) {
+	   public static boolean existe(int x) {
 		
 		   NoA temp = raiz;
+		   
+		   if (temp == null) return false;
 		   
 		   if(x == temp.valor) return true;
 		   else {
 		   
-		   while(temp.esq != null && temp.dir != null) {
-			   while( x < temp.esq.valor) {
-				   if ( x == temp.valor) return true;
+		   while(temp != null) {
+			   
+			   if(x == temp.valor) return true;
+			   else if(x < temp.valor)
 				   temp = temp.esq;
-			   }
-			   
-			   
-//			   if(x == temp.esq.valor || x == temp.dir.valor ) return true;  
-//			   else {
-//				   
-			   }
-		   
-		   
+			   else if (x > temp.valor ) temp = temp.dir;
 		   }
+		   
+		   return false;
+	   }
 	   }
 		
 	   public static void exibir(NoA temp){
