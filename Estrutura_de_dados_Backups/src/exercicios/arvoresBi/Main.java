@@ -11,16 +11,24 @@ public class Main {
 		inserir(12);
 		inserir(13);
 		inserir(42);
-		inserir(9);
+		inserir(8);
 		inserir(6);
 		inserir(6);
 		
 		inserirExclusivo(9);
 		
+	//	mostrarFB(raiz);
 		
+		exibeArvore(raiz, 0);
+		
+		raiz = girarEsquerda(raiz);raiz = girarEsquerda(raiz);raiz = girarEsquerda(raiz);
+		
+		System.out.println("--------------------------------");
+		
+		exibeArvore(raiz, 0);
 		
 	}
-
+	
 	
 	   public static void inserir(int x){
 	        NoA novo = new NoA(x);
@@ -218,9 +226,47 @@ public class Main {
 	        return false;
 	   }
 	   
+	   public static void mostrarFB(NoA raiz){
+		   
+		   NoA temp = raiz;
+		   if(temp != null){
 			   
+			 mostrarFB(temp.esq);
+			 int esq = profundidade(temp.esq);
+			 int dir = profundidade(temp.dir);
+			 int fb = esq - dir;
+			 System.out.println( temp.valor + " -> FB = " + fb );
+			 mostrarFB(temp.dir);
+			  
+			   
+		   }
+		   
+	   }
 	   
+	   
+	   public static boolean ehAVL(NoA N) {
+		return false;
+		   
+	   }
+	   
+	  public static int fatorBalanceamento(NoA n) {
+		return 0;
+		  
+	  }
 	  
-}
+	  public static NoA girarDireita(NoA x){
+	        NoA y = x.esq; //Seja Y o filho à esquerda de X
+	        x.esq = y.dir; // Torne o filho à direita de Y o filho à esquerda de X.
+	        y.dir = x; // Torne X o filho à direita de Y
+	        return y;
+	    }
 
+	    public static NoA girarEsquerda(NoA x){
+	        NoA y = x.dir; //Seja Y o filho à direita de X
+	        x.dir = y.esq; // Torne o filho à esquerda de Y o filho à direita de X.
+	        y.esq = x; // Torne X o filho à esquerda de Y
+	        return y;
+	    }
+	    
+}
 
