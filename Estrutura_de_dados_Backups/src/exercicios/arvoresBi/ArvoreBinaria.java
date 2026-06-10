@@ -19,7 +19,7 @@ public class ArvoreBinaria {
        exibirArvore(raiz, 0);
 
        System.out.println("--------------------------------");
-       balancear(raiz.esq.esq.esq);
+       raiz = balancear(raiz);
 		
 		
 		exibirArvore(raiz, 0);
@@ -418,34 +418,40 @@ public class ArvoreBinaria {
         return temp;
     }
     
-    public static NoA balancear(NoA temp){
-
-        if (temp == null) return null;
-
-        temp.esq = balancear(temp.esq);
-        temp.dir = balancear(temp.dir);
-        int fb = fatorBalanceamento(temp);
-
-        System.out.println(fb + "  " + temp.valor);
-        if (fb <= 2){ // esquerda
-            if(fatorBalanceamento(temp.dir) > 0){ //duas operações
-                temp = duplaGirarEsq(temp);
-            }else{
-                temp = girarEsquerda(temp);
-
-            }
-        }
-        if(fb >= 2){ //direita
-            if(fatorBalanceamento(temp.esq) < 0){ //duas operações
-                temp = duplaGirarDir(temp);
-            }else{
-                temp = girarDireita(temp);
-            }
-        }
-
-        return temp;
-    }
     
+    public static NoA balancear(NoA n){
+
+        if(n != null){
+
+            n.esq = balancear(n.esq);
+            n.dir = balancear(n.dir);
+
+            int fb = fatorBalanceamento(n);
+
+            // CASO ESQUERDA
+            if(fb > 1){
+
+                if(fatorBalanceamento(n.esq) >= 0){
+                    n = girarDireita(n);      // LL
+                }else{
+                    n = duplaGirarDir(n);     // LR
+                }
+            }
+
+            // CASO DIREITA
+            else if(fb < -1){
+
+                if(fatorBalanceamento(n.dir) <= 0){
+                    n = girarEsquerda(n);     // RR
+                }else{
+                    n = duplaGirarEsq(n);     // RL
+                }
+            }
+        }
+
+        return n;
+    }
+ 
     
     
 }
